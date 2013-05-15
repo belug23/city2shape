@@ -134,6 +134,7 @@ class CityConverter(object):
         self.file.readline()
         self.file.readline()
         self.city_size = int(self.file.readline())
+        self.lake_buffer = self.city_size/100
         for i in range(12) : self.file.readline()
         for i in range(4) : self.file.readline()
         self.line_object_number = int(self.file.readline())
@@ -354,7 +355,7 @@ class CityConverter(object):
         lake_point = ogr.Geometry(type=ogr.wkbPoint)
         for point in lineString:
             lake_point.SetPoint(0, point[0], point[1])
-            self.lake_poly.AddGeometry(lake_point.Buffer(5, 30))
+            self.lake_poly.AddGeometry(lake_point.Buffer(self.lake_buffer, 30))
 
         return True
 
