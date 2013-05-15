@@ -28,8 +28,11 @@ Preview
 Usage
 -----
 
-Use the open button to get your sgs file
+Use the open button to get your sgs file.
+
 Use the (x, y) fields to set the position of you city (The coordinates must be meters as in EPSG:900913)
+
+Press convert and go check the folder named after the sgs file name in the sgs file directory
 
 Thanks
 ------
