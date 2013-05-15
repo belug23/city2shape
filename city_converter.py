@@ -15,7 +15,6 @@ class CityConverter(object):
 
     def convert(self, ):
         if not os.path.isfile(self.filepath):
-            print self.filepath
             return False
 
 
@@ -52,7 +51,6 @@ class CityConverter(object):
         self.ds_roads = self.road_driver.CreateDataSource(road_file)
         self.road_layer = self.ds_roads.CreateLayer('road', spatialReference, ogr.wkbLineString)
         if self.road_layer.CreateField ( self.width_field ) != 0:
-            print "Creating mat_id field failed.\n"
             return False
         self.road_def = self.road_layer.GetLayerDefn()
 
@@ -61,7 +59,6 @@ class CityConverter(object):
         self.ds_rivers = self.river_driver.CreateDataSource(river_file)
         self.river_layer = self.ds_rivers.CreateLayer('river', spatialReference, ogr.wkbLineString)
         if self.river_layer.CreateField ( self.width_field ) != 0:
-            print "Creating mat_id field failed.\n"
             return False
         self.river_def = self.river_layer.GetLayerDefn()
 
@@ -96,7 +93,6 @@ class CityConverter(object):
         self.ds_walls = self.wall_driver.CreateDataSource(wall_file)
         self.wall_layer = self.ds_walls.CreateLayer('wall', spatialReference, ogr.wkbLineString)
         if self.wall_layer.CreateField ( self.width_field ) != 0:
-            print "Creating mat_id field failed.\n"
             return False
         self.wall_def = self.wall_layer.GetLayerDefn()
 
@@ -105,7 +101,6 @@ class CityConverter(object):
         self.ds_towers = self.tower_driver.CreateDataSource(tower_file)
         self.tower_layer = self.ds_towers.CreateLayer('tower', spatialReference, ogr.wkbPolygon)
         if self.tower_layer.CreateField ( self.visible_field ) != 0:
-            print "Creating mat_id field failed.\n"
             return False
         self.tower_def = self.tower_layer.GetLayerDefn()
 
@@ -150,32 +145,27 @@ class CityConverter(object):
 
 
         self.building_object_number = int(self.file.readline())
-        print 'Buildings', self.line_object_number
 
         if not self.parse_buildings(): return False
 
         self.square_object_number = int(self.file.readline())
-        print 'Squares', self.square_object_number
         self.file.readline()
 
         if not self.parse_squares(): return False
 
         self.file.readline()
         self.park_object_number = int(self.file.readline())
-        print 'Parks', self.park_object_number
         self.file.readline()
 
         if not self.parse_parks(): return False
 
         has_walls = int(self.file.readline())
-        print has_walls
         if has_walls > 0:
             self.wall_object_number = int(self.file.readline())
             self.wall_thickness = float(self.file.readline())
             if not self.parse_wall(): return False
 
             self.tower_object_number = int(self.file.readline())
-            print 'Towers', self.tower_object_number
 
             if not self.parse_towers(): return False
 
@@ -243,9 +233,7 @@ class CityConverter(object):
 
     def parse_squares(self, ):
         for i in range(self.square_object_number):
-            print 'dump', self.file.readline()
             point_number = int(self.file.readline())
-            print 'point_number', point_number
             if point_number > 0:
                 self.file.readline()
                 lineString = []
@@ -264,9 +252,7 @@ class CityConverter(object):
 
     def parse_parks(self, ):
         for i in range(self.park_object_number):
-            print 'dump', self.file.readline()
             point_number = int(self.file.readline())
-            print 'point_number', point_number
             if point_number > 0:
                 self.file.readline()
                 lineString = []
