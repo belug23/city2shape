@@ -233,6 +233,7 @@ class CityConverter(object):
 
     def parse_squares(self, ):
         for i in range(self.square_object_number):
+            self.file.readline()
             point_number = int(self.file.readline())
             if point_number > 0:
                 self.file.readline()
@@ -252,6 +253,7 @@ class CityConverter(object):
 
     def parse_parks(self, ):
         for i in range(self.park_object_number):
+            self.file.readline()
             point_number = int(self.file.readline())
             if point_number > 0:
                 self.file.readline()
