@@ -154,7 +154,6 @@ class CityConverter(object):
 
         if not self.parse_squares(): return False
 
-        self.file.readline()
         self.park_object_number = int(self.file.readline())
         self.file.readline()
 
@@ -236,8 +235,8 @@ class CityConverter(object):
         for i in range(self.square_object_number):
             self.file.readline()
             point_number = int(self.file.readline())
+            self.file.readline()
             if point_number > 0:
-                self.file.readline()
                 lineString = []
                 for y in range(point_number):
                     posX = float(self.file.readline())
@@ -253,13 +252,16 @@ class CityConverter(object):
         return True
 
     def parse_parks(self, ):
+        print self.park_object_number
         for i in range(self.park_object_number):
+            print i
             self.file.readline()
             point_number = int(self.file.readline())
+            print 'dump', self.file.readline()
             if point_number > 0:
-                self.file.readline()
                 lineString = []
                 for y in range(point_number):
+                    print y
                     posX = float(self.file.readline())
                     posY = float(self.file.readline())*-1
                     posPoint = (posX+self.position_correction['x'], posY+self.position_correction['y'])
@@ -372,7 +374,7 @@ class CityConverter(object):
         else:
             building_point = ogr.Geometry(type=ogr.wkbPoint)
             building_point.SetPoint(0, building_object['x'], building_object['y'])
-            building_poly = building_point.Buffer(building_object['width'], 30)
+            building_poly = building_point.Buffer(building_object['width']/2, 30)
 
         building_feat.SetGeometry(building_poly)
         if self.building_layer.CreateFeature(building_feat) != 0:
@@ -462,7 +464,7 @@ class CityConverter(object):
         tree_point = ogr.Geometry(ogr.wkbPoint)
         tree_point.SetPoint(0, point[0], point[1])
 
-        tree_poly = tree_point.Buffer(size, 30)
+        tree_poly = tree_point.Buffer(size/2, 30)
 
         tree_feat.SetGeometry(tree_poly)
         if self.tree_layer.CreateFeature(tree_feat) != 0:
