@@ -54,4 +54,4 @@ Thanks to the opensource community
 Thanks to the OGC and OSGEO
 Thanks to my gamemaster Nicklaus for those awesome games
 Thanks to adube for this tutorial that started it all : https://github.com/adube/birthright-map/blob/master/README-raster.markdown
-
+Thanks to the author of http://blog.hawkbats.com/2012/11/17/stadtplan-dateien-sgs-map-file-format/
