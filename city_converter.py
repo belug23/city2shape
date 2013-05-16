@@ -252,16 +252,13 @@ class CityConverter(object):
         return True
 
     def parse_parks(self, ):
-        print self.park_object_number
         for i in range(self.park_object_number):
-            print i
             self.file.readline()
             point_number = int(self.file.readline())
-            print 'dump', self.file.readline()
+            self.file.readline()
             if point_number > 0:
                 lineString = []
                 for y in range(point_number):
-                    print y
                     posX = float(self.file.readline())
                     posY = float(self.file.readline())*-1
                     posPoint = (posX+self.position_correction['x'], posY+self.position_correction['y'])
